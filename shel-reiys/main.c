@@ -26,7 +26,6 @@ int main() {
         }
         args[i] = NULL;
 
-        // Cek built-in dulu sebelum fork
         if (args[0] == NULL) continue;
 
         if (strcmp(args[0], "exit") == 0) {
@@ -38,7 +37,7 @@ int main() {
         if (builtin_echo(args) == 0) continue;
         if (builtin_clear(args) == 0) continue;
 
-        // External command
+       
         pid_t pid = fork();
         if (pid == 0) {
             execvp(args[0], args);
